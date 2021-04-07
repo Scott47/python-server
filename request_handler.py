@@ -1,5 +1,8 @@
 from http.server import BaseHTTPRequestHandler, HTTPServer
 from animals import get_all_animals, get_single_animal
+from locations import get_all_locations, get_single_location
+from employees import get_all_employees, get_single_employee
+from customers import get_all_customers, get_single_customer
 
 
 # Here's a class. It inherits from another class.
@@ -56,6 +59,24 @@ class HandleRequests(BaseHTTPRequestHandler):
 
             else:
                 response = f"{get_all_animals()}"
+        if resource == "locations":
+            if id is not None:
+                response = f"{get_single_location(id)}"
+
+            else:
+                response = f"{get_all_locations()}"
+        if resource == "employees":
+            if id is not None:
+                response = f"{get_single_employee(id)}"
+
+            else:
+                response = f"{get_all_employees()}"
+        if resource == "customers":
+            if id is not None:
+                response = f"{get_single_customer(id)}"
+
+            else:
+                response = f"{get_all_customers()}"
 
         self.wfile.write(response.encode())
 
@@ -71,8 +92,26 @@ class HandleRequests(BaseHTTPRequestHandler):
         else:
             response = []
 
-        # This weird code sends a response back to the client
-        self.wfile.write(f"{response}".encode())
+        if self.path == "/locations":
+            response = get_all_locations()
+
+        else:
+            response = []
+        
+        if self.path == "/employees":
+            response = get_all_employees()
+
+        else:
+            response = []
+
+        if self.path == "/customers":
+            response = get_all_customers()
+
+        else:
+            response = []
+
+
+        # self.wfile.write(f"{response}".encode())
 
     # Here's a method on the class that overrides the parent's method.
     # It handles any POST request.
