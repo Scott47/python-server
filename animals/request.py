@@ -4,7 +4,7 @@ ANIMALS = [
         "name": "Snickers",
         "species": "Dog",
         "locationId": 1,
-        "customerId": 4
+        "customerId": 3
     },
     {
         "id": 2,
