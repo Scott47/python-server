@@ -2,7 +2,7 @@ from http.server import BaseHTTPRequestHandler, HTTPServer
 from animals import get_all_animals, get_single_animal, create_animal, delete_animal
 from locations import get_all_locations, get_single_location, create_location, delete_location
 from employees import get_all_employees, get_single_employee, create_employee, delete_employee
-from customers import get_all_customers, get_single_customer, delete_customer
+from customers import get_all_customers, get_single_customer, create_customer, delete_customer
 import json
 
 
@@ -127,10 +127,11 @@ class HandleRequests(BaseHTTPRequestHandler):
         # Parse the URL
         (resource, id) = self.parse_url(self.path)
 
-        # Initialize new animal, location, employee
+        # Initialize new animal, location, employee, customer
         new_animal = None
         new_location = None
         new_employee = None
+        new_customer= None
 
         # Add a new animal, location, or employee to the list. Don't worry about
         # the orange squiggle, you'll define the create_animal
@@ -145,6 +146,9 @@ class HandleRequests(BaseHTTPRequestHandler):
         if resource == "employees":
             new_employee = create_employee(post_body)
             self.wfile.write(f"{new_employee}".encode())
+        if resource == "customers":
+            new_customer = create_customer(post_body)
+            self.wfile.write(f"{new_customer}".encode())
 
     def do_DELETE(self):
         # Set a 204 response code
