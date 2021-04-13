@@ -63,6 +63,7 @@ def get_single_location(id):
 
         return json.dumps(location.__dict__)
 
+
 def create_location(location):
     # Get the id value of the last location in the list
     max_id = LOCATIONS[-1]["id"]

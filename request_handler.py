@@ -3,7 +3,8 @@ from animals import (get_all_animals,
                     get_single_animal,
                     create_animal,
                     delete_animal,
-                    update_animal)
+                    update_animal,
+                    get_animals_by_location)
 from locations import (get_all_locations,
                     get_single_location,
                     create_location,
@@ -119,6 +120,8 @@ class HandleRequests(BaseHTTPRequestHandler):
             # email as a filtering value?
             if key == "email" and resource == "customers":
                 response = get_customers_by_email(value)
+            if key == "location_id" and resource == "animals":
+                response = get_animals_by_location(value)
 
         self.wfile.write(response.encode())
 
