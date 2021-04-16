@@ -1,5 +1,3 @@
-SELECT a.name, l.name as 'location_name'
-FROM Location l
-JOIN Animal a ON a.location_id = l.id;
+INSERT INTO `Animal` VALUES (null, "Daps", "Kennel", "Boxer", 2, 2);
 
 

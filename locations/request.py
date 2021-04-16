@@ -103,3 +103,12 @@ def update_location(id, new_location):
             # Found the location. Update the value.
             LOCATIONS[index] = new_location
             break
+
+def delete_location(id):
+    with sqlite3.connect("./kennel.db") as conn:
+        db_cursor = conn.cursor()
+
+        db_cursor.execute("""
+        DELETE FROM location
+        WHERE id = ?
+        """, (id, ))
